@@ -39,8 +39,8 @@ export function CardComp({
         <CardDescription>{description}</CardDescription>
       </CardHeader>
       <CardContent>{children}</CardContent>
-      <CardFooter className="flex justify-between">
-        <Button variant="outline">{buttonLText}</Button>
+      <CardFooter className="flex justify-end">
+        {/* <Button variant="outline">{buttonLText}</Button> */}
         <Button>
           <Link href={title.toString().toLowerCase().replace(/\s+/g, '-')}>
             {buttonRText}

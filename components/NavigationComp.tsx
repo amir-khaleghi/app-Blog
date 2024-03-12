@@ -48,12 +48,11 @@ export function NavigationComp() {
                     href="/"
                   >
                     <div className="mb-2 mt-4 text-lg font-medium">
-                      shadcn/ui
+                      Amirdev Blog
                     </div>
                     <p className="text-sm leading-tight text-muted-foreground">
-                      Beautifully designed components that you can copy and
-                      paste into your apps. Accessible. Customizable. Open
-                      Source.
+                      Beautifully designed Weblog. Accessible. Customizable.
+                      Open Source.
                     </p>
                   </a>
                 </NavigationMenuLink>

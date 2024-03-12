@@ -1,3 +1,5 @@
+'use client';
+
 import * as React from 'react';
 
 import { Button } from '@/components/ui/button';
@@ -19,6 +21,8 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Textarea } from './ui/textarea';
+import EditorText from './EditorText';
+import { useForm } from 'react-hook-form';
 
 /* Type ----------------------------- */
 interface FormProps {
@@ -31,7 +35,13 @@ interface FormProps {
 // ─── Comp ─────────────────────────────────────────── 🟩 ─
 
 export function Form({ title, description, inputs, select }: FormProps) {
-  console.log(inputs);
+  /* UseForm Hook --------------------- */
+  const { register, handleSubmit } = useForm();
+
+  const submit = (data) => console.log(data);
+
+  // ─── Return ──────────────────────────────────────────────
+
   return (
     <Card className="w-[350px]">
       <CardHeader>
@@ -39,7 +49,7 @@ export function Form({ title, description, inputs, select }: FormProps) {
         <CardDescription>{description}</CardDescription>
       </CardHeader>
       <CardContent>
-        <form>
+        <form onSubmit={handleSubmit(submit)}>
           <div className="grid w-full items-center gap-4">
             {inputs.map((item, index) => {
               const { label, placeHolder } = item;
@@ -50,6 +60,7 @@ export function Form({ title, description, inputs, select }: FormProps) {
                 >
                   <Label htmlFor="name">{label}</Label>
                   <Input
+                    {...register('name')}
                     id="name"
                     placeholder={placeHolder}
                   />
@@ -64,31 +75,25 @@ export function Form({ title, description, inputs, select }: FormProps) {
                   className="flex flex-col space-y-1.5"
                 >
                   <Label htmlFor={label}>{label}</Label>
-                  <Select>
-                    <SelectTrigger id={label}>
-                      <SelectValue placeholder="Select" />
-                    </SelectTrigger>
-                    <SelectContent position="popper">
-                      {options.map((option, index) => (
-                        <SelectItem
-                          key={index}
-                          value={option}
-                        >
-                          {option}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                  <select
+                    {...register('tag')}
+                    name=""
+                    id=""
+                  >
+                    {options.map((option, index) => (
+                      <option key={index}>{option}</option>
+                    ))}
+                  </select>
                 </div>
               );
             })}
-            <Textarea placeholder="Type your message here." />{' '}
+            <Textarea {...register('a')} />
           </div>
+          <CardFooter className="flex justify-between mt-4 w-full p-0">
+            <Button className="w-full">Deploy</Button>
+          </CardFooter>
         </form>
       </CardContent>
-      <CardFooter className="flex justify-between">
-        <Button className="w-full">Deploy</Button>
-      </CardFooter>
     </Card>
   );
 }
