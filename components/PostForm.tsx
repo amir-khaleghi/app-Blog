@@ -152,7 +152,7 @@ export function PostForm({ title, inputs, select }: FormPostProps) {
             className="w-full ease-in-out duration-500 transition hover:scale-95"
             type="submit"
           >
-            Deploy
+            Create
           </Button>
         </form>
       </Form>
