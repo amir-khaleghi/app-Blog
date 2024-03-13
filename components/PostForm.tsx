@@ -60,6 +60,11 @@ export function PostForm() {
   /* 2.Define A Submit Handler ------ */
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
+    form.reset({
+      title: '',
+      category: 'Select', // Set the default category value
+      content: '',
+    });
   }
 
   // ─── Return ──────────────────────────────────────────────
