@@ -1,0 +1,18 @@
+[33mcommit 5e6df5454d0b81a611503db6749cf03b4900d242[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: amir-khaleghi <a.khaleghi.d@gmail.com>
+Date:   Tue Mar 12 21:50:37 2024 +0330
+
+    [build]: add FormPost
+    [style]: add some vectors
+
+[33mcommit 3b4b9fee4e42f705da8ece09cfce84f21adf07b7[m
+Author: amir-khaleghi <a.khaleghi.d@gmail.com>
+Date:   Tue Mar 12 13:39:23 2024 +0330
+
+    [build]: first structure of the blog, Navbar,Form,CardComp,PostList
+
+[33mcommit c8d28d00672898ef56ec3911dd0b6fcfd3dac488[m
+Author: amir-khaleghi <a.khaleghi.d@gmail.com>
+Date:   Mon Mar 11 10:29:10 2024 +0330
+
+    Initial commit from Create Next App

@@ -74,7 +74,7 @@ export default function Home() {
       <div className="sm:gap-20 md:px-20">
         <Navbar />
       </div>
-      <div className="flex flex-wrap sm:px-10  items-center justify-center gap-6 md:pt-24">
+      <div className="flex flex-wrap sm:px-10  items-center justify-center gap-6 md:pt-24 lg:px-40 md:px-18">
         {db.map((card) => {
           const { id, title, description, content } = card;
           return (

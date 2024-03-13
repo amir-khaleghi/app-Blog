@@ -34,45 +34,17 @@ export function NavigationComp() {
     <NavigationMenu>
       <NavigationMenuList className=" p-2 justify-center">
         {/* home */}
-        <NavigationMenuItem className="justify-center">
-          <NavigationMenuTrigger>Home</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-              <li className="row-span-3">
-                <NavigationMenuLink
-                  className="bg-red-200"
-                  asChild
-                >
-                  <a
-                    className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                    href="/"
-                  >
-                    <div className="mb-2 mt-4 text-lg font-medium">
-                      Amirdev Blog
-                    </div>
-                    <p className="text-sm leading-tight text-muted-foreground">
-                      Beautifully designed Weblog. Accessible. Customizable.
-                      Open Source.
-                    </p>
-                  </a>
-                </NavigationMenuLink>
-              </li>
-              <ListItem
-                href="/docs"
-                title="Introduction"
-              >
-                Re-usable components built using Radix UI and Tailwind CSS.
-              </ListItem>
-              <ListItem
-                href="/docs/installation"
-                title="Installation"
-              >
-                How to install dependencies and structure your app.
-              </ListItem>
-            </ul>
-          </NavigationMenuContent>
+        <NavigationMenuItem>
+          <Link
+            href="/"
+            legacyBehavior
+            passHref
+          >
+            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              Home
+            </NavigationMenuLink>
+          </Link>
         </NavigationMenuItem>
-
         {/* new post */}
         <NavigationMenuItem>
           <Link

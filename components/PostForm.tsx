@@ -29,18 +29,11 @@ import {
 } from '@/components/ui/form';
 import { Card, CardTitle } from './ui/card';
 import { Textarea } from './ui/textarea';
-
-/* Type ----------------------------- */
-interface FormProps {
-  className?: string;
-  title: string;
-  inputs: Array<{ label: string; placeHolder: string }>;
-  select: { options: string[] };
-}
+import { FormPostProps } from '@/types';
 
 // ─── Comp ─────────────────────────────────────────── 🟩 ─
 
-export function PostForm({ title, inputs, select }: FormProps) {
+export function PostForm({ title, inputs, select }: FormPostProps) {
   /* Form Schema ---------------------- */
   const formSchema = z.object({
     title: z.string().min(1, {
