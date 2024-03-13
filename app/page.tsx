@@ -1,7 +1,6 @@
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 import { CardComp } from '@/components/CardComp';
-import { Card } from '@/components/ui/card';
 
 const db = [
   {

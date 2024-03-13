@@ -6,7 +6,6 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
 import { Button } from '@/components/ui/button';
-
 import { Input } from '@/components/ui/input';
 import {
   Select,
@@ -29,11 +28,12 @@ import {
 } from '@/components/ui/form';
 import { Card, CardTitle } from './ui/card';
 import { Textarea } from './ui/textarea';
-import { FormPostProps } from '@/types';
 
 // ─── Comp ─────────────────────────────────────────── 🟩 ─
 
-export function PostForm({ title, inputs, select }: FormPostProps) {
+export function PostForm() {
+  const options = ['Tech', 'Web', 'Soft Skill', 'Next.js', 'TypeScript'];
+
   /* Form Schema ---------------------- */
   const formSchema = z.object({
     title: z.string().min(1, {
@@ -42,7 +42,7 @@ export function PostForm({ title, inputs, select }: FormPostProps) {
     content: z.string().min(1, {
       message: 'Content must be at least 10 characters.',
     }),
-    category: z.string().refine((value) => select.options.includes(value), {
+    category: z.string().refine((value) => options.includes(value), {
       message: 'Please select a valid category from the options.',
     }),
   });
@@ -59,8 +59,6 @@ export function PostForm({ title, inputs, select }: FormPostProps) {
 
   /* 2.Define A Submit Handler ------ */
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
     console.log(values);
   }
 
@@ -68,7 +66,7 @@ export function PostForm({ title, inputs, select }: FormPostProps) {
 
   return (
     <Card className="p-6 gap-4 flex flex-col max-w-[600px] w-full">
-      <CardTitle>{title}</CardTitle>
+      <CardTitle>Create New Post</CardTitle>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
@@ -95,7 +93,7 @@ export function PostForm({ title, inputs, select }: FormPostProps) {
             {/* select */}
             <FormField
               control={form.control}
-              defaultValue={select.options[0]}
+              defaultValue={options[0]}
               name="category"
               render={({ field }) => (
                 <FormItem>
@@ -110,7 +108,7 @@ export function PostForm({ title, inputs, select }: FormPostProps) {
                       </SelectTrigger>
                       <SelectContent>
                         <SelectGroup>
-                          {select.options.map((option, index) => {
+                          {options.map((option, index) => {
                             return (
                               <SelectItem
                                 {...field}
