@@ -12,7 +12,6 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
@@ -20,7 +19,6 @@ import {
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -60,6 +58,8 @@ export function PostForm() {
   /* 2.Define A Submit Handler ------ */
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
+
+    /* Reset Form ------------------- */
     form.reset({
       title: '',
       category: 'Select', // Set the default category value

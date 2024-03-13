@@ -14,6 +14,7 @@ import Link from 'next/link';
 
 /* Type ----------------------------- */
 interface CardCompProps {
+  id: string;
   className?: string;
   title: string;
   description: string;
@@ -25,6 +26,7 @@ interface CardCompProps {
 // ─── Comp ─────────────────────────────────────────── 🟩 ─
 
 export function CardComp({
+  id,
   className,
   children,
   title,
@@ -42,9 +44,7 @@ export function CardComp({
       <CardFooter className="flex justify-end">
         {/* <Button variant="outline">{buttonLText}</Button> */}
         <Button>
-          <Link href={title.toString().toLowerCase().replace(/\s+/g, '-')}>
-            {buttonRText}
-          </Link>
+          <Link href={`post-page/${id}`}>{buttonRText}</Link>
         </Button>
       </CardFooter>
     </Card>

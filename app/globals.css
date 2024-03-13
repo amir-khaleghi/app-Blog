@@ -76,3 +76,11 @@ html {
     @apply bg-background text-foreground;
   }
 }
+
+body {
+  transition: margin-right 0.3s ease;
+}
+
+body.data-scroll-locked {
+  margin-right: calc(100vw - 100%);
+}

@@ -13,7 +13,17 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
-
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { Input } from './ui/input';
+import { Label } from './ui/label';
+import { Button } from './ui/button';
 const components: { title: string; href: string; description: string }[] = [
   {
     title: 'Alert Dialog',
@@ -61,17 +71,33 @@ export function NavigationComp() {
         <NavigationMenuItem>
           <NavigationMenuTrigger>Newsletter</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ul className="grid w-[326px] gap-3 p-4 md:w-[500px] md:grid-cols-2  ">
-              {components.map((component) => (
-                <ListItem
-                  key={component.title}
-                  title={component.title}
-                  href={component.href}
-                >
-                  {component.description}
-                </ListItem>
-              ))}
-            </ul>
+            <Card className="w-[350px]">
+              <CardHeader>
+                <CardTitle>Keep in touch</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <form>
+                  <div className="grid w-full items-center gap-4">
+                    <div className="flex flex-col space-y-1.5">
+                      <Label htmlFor="name">Email</Label>
+                      <Input
+                        type="email"
+                        id="name"
+                        placeholder="Your Email"
+                      />
+                    </div>
+                  </div>
+                  <CardFooter className="flex justify-between  p-0 mt-2">
+                    <Button
+                      className="w-full "
+                      variant="ghost"
+                    >
+                      Subscribe
+                    </Button>
+                  </CardFooter>
+                </form>
+              </CardContent>
+            </Card>
           </NavigationMenuContent>
         </NavigationMenuItem>
       </NavigationMenuList>

@@ -20,7 +20,7 @@ const Footer = () => {
   // }
 
   return (
-    <div className="flex relative items-center justify-between border-t p-2 w-full mt-80 ">
+    <div className="flex relative items-center justify-between border-t p-2 w-full mt-80  ">
       <div className="absolute bottom-16 -right-40 -z-10 overflow-x-hidden">
         <Image
           className="w-[1200px]"
