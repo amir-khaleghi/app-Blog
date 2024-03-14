@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
-import Navbar from '@/components/Navbar';
 import { cn } from '@/lib/utils';
 import { ThemeProvider } from '@/components/theme-provider';
-
+import Image from 'next/image';
+import vector1 from '@/public/vector1.svg';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -23,6 +23,16 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className={cn(inter.className)}>
+        <div className="absolute top-16 -left-40 rotate-180 -z-10 overflow-x-hidden">
+          <Image
+            className="w-[1200px]"
+            src={vector1}
+            width="300"
+            height="300"
+            alt="blog svg"
+          />
+        </div>
+
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
