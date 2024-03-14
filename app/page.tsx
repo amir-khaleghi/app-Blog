@@ -1,5 +1,4 @@
 import Footer from '@/components/Footer';
-import Navbar from '@/components/Navbar';
 import { CardComp } from '@/components/CardComp';
 
 const db = [
@@ -35,11 +34,8 @@ const db = [
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center justify-between min-h-screen  px-4  pt-10 overflow-x-hidden">
-      <div className="sm:gap-20 md:px-20">
-        <Navbar />
-      </div>
-      <div className="flex flex-wrap sm:px-10  items-center justify-center gap-6 md:pt-24 lg:px-[100px] md:px-8">
+    <>
+      <div className="flex flex-wrap sm:px-10  items-center justify-center  gap-6 md:pt-24 lg:px-[100px] md:px-8">
         {db.map((card) => {
           const { id, title, description, content } = card;
           return (
@@ -62,6 +58,6 @@ export default function Home() {
         })}
       </div>
       <Footer />
-    </main>
+    </>
   );
 }

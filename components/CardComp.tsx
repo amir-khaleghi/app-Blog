@@ -43,9 +43,9 @@ export function CardComp({
       <CardContent>{children}</CardContent>
       <CardFooter className="flex justify-end">
         {/* <Button variant="outline">{buttonLText}</Button> */}
-        <Button>
-          <Link href={`post-page/${id}`}>{buttonRText}</Link>
-        </Button>
+        <Link href={`post-page/${id}`}>
+          <Button>{buttonRText}</Button>
+        </Link>
       </CardFooter>
     </Card>
   );

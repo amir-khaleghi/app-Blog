@@ -7,20 +7,8 @@ import Link from 'next/link';
 import blog3 from '@/public/blog3.svg';
 import vector1 from '@/public/vector1.svg';
 const Footer = () => {
-  // const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
-
-  // useEffect only runs on the client, so now we can safely show the UI
-  // useEffect(() => {
-  //   setMounted(true);
-  // }, []);
-
-  // if (!mounted) {
-  //   return null;
-  // }
-
   return (
-    <div className="flex relative items-center justify-between border-t p-2 w-full mt-80  ">
+    <div className="flex relative items-center justify-between border-t p-2 w-full mt-80   ">
       <div className="absolute bottom-16 -right-40 -z-10 overflow-x-hidden">
         <Image
           className="w-[1200px]"
@@ -39,7 +27,7 @@ const Footer = () => {
           alt="blog svg"
         />
       </div>
-      <div>
+      <div className="text-sm sm:text-md">
         @2024
         <Link
           target="_blank"

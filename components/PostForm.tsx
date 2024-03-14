@@ -1,9 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
+import { SubmitHandler, UseFormReturn } from 'react-hook-form';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -26,56 +24,44 @@ import {
 } from '@/components/ui/form';
 import { Card, CardTitle } from './ui/card';
 import { Textarea } from './ui/textarea';
+import BackButton from './BackButton';
+
+// ─── Type ─────────────────────────────────────────── 🟩 ─
+
+interface FormProps {
+  title: string;
+  buttonName: string;
+  submitHandler: SubmitHandler<{
+    title: string;
+    content: string;
+    category: string;
+  }>;
+  options: string[];
+  form: UseFormReturn<{
+    title: string;
+    content: string;
+    category: string;
+  }>;
+}
 
 // ─── Comp ─────────────────────────────────────────── 🟩 ─
-
-export function PostForm() {
-  const options = ['Tech', 'Web', 'Soft Skill', 'Next.js', 'TypeScript'];
-
-  /* Form Schema ---------------------- */
-  const formSchema = z.object({
-    title: z.string().min(1, {
-      message: `Title can't be empty`,
-    }),
-    content: z.string().min(1, {
-      message: 'Content must be at least 10 characters.',
-    }),
-    category: z.string().refine((value) => options.includes(value), {
-      message: 'Please select a valid category from the options.',
-    }),
-  });
-
-  /* // 1. Define Your Form. -------- */
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      title: '',
-      category: '',
-      content: '',
-    },
-  });
-
-  /* 2.Define A Submit Handler ------ */
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-
-    /* Reset Form ------------------- */
-    form.reset({
-      title: '',
-      category: 'Select', // Set the default category value
-      content: '',
-    });
-  }
-
+export function PostForm({
+  title,
+  buttonName,
+  submitHandler,
+  options,
+  form,
+}: FormProps) {
   // ─── Return ──────────────────────────────────────────────
 
   return (
-    <Card className="p-6 gap-4 flex flex-col max-w-[600px] w-full">
-      <CardTitle>Create New Post</CardTitle>
+    <Card className="p-6  gap-4  flex flex-col max-w-[600px] w-full relative">
+      <CardTitle>{title}</CardTitle>
+      <BackButton className="absolute right-0 top-0 rounded-tl-none rounded-br-none " />
       <Form {...form}>
         <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-4"
+          onSubmit={form.handleSubmit(submitHandler)}
+          className="space-y-4 "
         >
           <>
             {/* title */}
@@ -155,7 +141,7 @@ export function PostForm() {
             className="w-full ease-in-out duration-500 transition hover:scale-95"
             type="submit"
           >
-            Create
+            {buttonName}
           </Button>
         </form>
       </Form>

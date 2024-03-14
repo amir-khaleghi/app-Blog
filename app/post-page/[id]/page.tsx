@@ -1,18 +1,24 @@
 'use client';
+import * as React from 'react';
 
+import Footer from '@/components/Footer';
+import PostCard from '@/components/PostCard';
 interface PostPageProps {
   params: { id: string };
 }
 
+// ─── Component ────────────────────────────────────── 🟩 ─
+
 const PostPage = ({ params }: PostPageProps) => {
-  console.log(params);
+  /* Get Data Of Post ----------------- */
+
+  // ─── Return ───────────────────────────────────────── 🟩 ─
+
   return (
-    <main className="flex flex-col items-center justify-between min-h-screen  px-4 sm:px-20 py-10 ">
-      <div>
-        <h1>This is the Id of the page:</h1>
-        {params.id}
-      </div>
-    </main>
+    <div className="relative w-full items-center justify-center flex flex-col">
+      <PostCard id={params.id} />
+      <Footer />
+    </div>
   );
 };
 export default PostPage;

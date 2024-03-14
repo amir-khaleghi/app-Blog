@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils';
 import { ThemeProvider } from '@/components/theme-provider';
 import Image from 'next/image';
 import vector1 from '@/public/vector1.svg';
+import Navbar from '@/components/Navbar';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -22,8 +23,16 @@ export default function RootLayout({
       lang="en"
       suppressHydrationWarning
     >
-      <body className={cn(inter.className)}>
-        <div className="absolute top-16 -left-40 rotate-180 -z-10 overflow-x-hidden">
+      <body
+        className={cn(
+          inter.className,
+          'flex flex-col items-center justify-between min-h-screen   overflow-x-hidden'
+        )}
+      >
+        <div className="sm:gap-20 ">
+          <Navbar />
+        </div>
+        <div className="absolute top-16 -left-40 rotate-180 -z-20 overflow-x-hidden">
           <Image
             className="w-[1200px]"
             src={vector1}
@@ -33,14 +42,16 @@ export default function RootLayout({
           />
         </div>
 
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
+        <div className="p-4 overflow-x-hidden md:p-20 w-full">
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+        </div>
       </body>
     </html>
   );
