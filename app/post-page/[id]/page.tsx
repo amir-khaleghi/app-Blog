@@ -15,9 +15,9 @@ const PostPage = ({ params }: PostPageProps) => {
   // ─── Return ───────────────────────────────────────── 🟩 ─
 
   return (
-    <div className="relative w-full items-center justify-center flex flex-col">
+    <div className="relative w-full items-center   justify-center flex flex-col">
       <PostCard id={params.id} />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

@@ -18,7 +18,7 @@ const EditPost = () => {
 
   // ─── Custom Hook ─────────────────────────────────────────
 
-  const { form, formSchema, options, handleSubmit } = useFormHook();
+  const { form, formSchema, tags } = useFormHook();
 
   /* 2.Define A Submit Handler for form data ------ */
   function handleEditPost(values: z.infer<typeof formSchema>) {
@@ -42,11 +42,10 @@ const EditPost = () => {
       <PostForm
         title="Edit Post"
         buttonName="Update"
-        options={options}
+        tags={tags.map((tag) => tag.name)}
         submitHandler={handleEditPost}
-        form={form}
       />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

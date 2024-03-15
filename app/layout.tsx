@@ -6,6 +6,8 @@ import { ThemeProvider } from '@/components/theme-provider';
 import Image from 'next/image';
 import vector1 from '@/public/vector1.svg';
 import Navbar from '@/components/Navbar';
+import Provider from '@/components/Provider';
+import Footer from '@/components/Footer';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -23,35 +25,44 @@ export default function RootLayout({
       lang="en"
       suppressHydrationWarning
     >
+      <head>
+        <link
+          rel="icon"
+          href="/icon.png"
+        />
+      </head>
       <body
         className={cn(
           inter.className,
-          'flex flex-col items-center justify-between min-h-screen   overflow-x-hidden'
+          'flex flex-col items-center justify-between min-h-screen  overflow-x-hidden'
         )}
       >
-        <div className="sm:gap-20 ">
-          <Navbar />
-        </div>
-        <div className="absolute top-16 -left-40 rotate-180 -z-20 overflow-x-hidden">
-          <Image
-            className="w-[1200px]"
-            src={vector1}
-            width="300"
-            height="300"
-            alt="blog svg"
-          />
-        </div>
+        <Provider>
+          <div className="sm:gap-20 ">
+            <Navbar />
+          </div>
+          <div className="absolute top-16 -left-40 rotate-180 -z-20 overflow-x-hidden">
+            <Image
+              className="w-[1200px]"
+              src={vector1}
+              width="300"
+              height="300"
+              alt="blog svg"
+            />
+          </div>
 
-        <div className="p-4 overflow-x-hidden md:p-20 w-full">
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            {children}
-          </ThemeProvider>
-        </div>
+          <div className="p-4 overflow-x-hidden md:p-20 w-full">
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              {children}
+            </ThemeProvider>
+          </div>
+          <Footer />
+        </Provider>
       </body>
     </html>
   );

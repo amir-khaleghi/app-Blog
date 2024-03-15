@@ -7,7 +7,8 @@ import { z } from 'zod';
 const NewPost = () => {
   /* Handler ------------------------ */
 
-  const { form, formSchema, options } = useFormHook();
+  const { form, formSchema } = useFormHook();
+
   /* 2.Define A Submit Handler ------ */
   function handleCreatePost(values: z.infer<typeof formSchema>) {
     console.log(values);
@@ -22,15 +23,13 @@ const NewPost = () => {
   // ─── Return ──────────────────────────────────────────────
 
   return (
-    <div className="relative w-full items-center justify-center flex flex-col">
+    <div className="relative w-full items-center  justify-center flex flex-col">
       <PostForm
         title="Create New Post"
         buttonName="Create"
         submitHandler={handleCreatePost}
-        options={options}
-        form={form}
       />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

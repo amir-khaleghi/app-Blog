@@ -34,7 +34,8 @@ const Footer = () => {
           rel="noopener"
           href="http://amirdev.dev"
         >
-          amirdev.dev
+          {' '}
+          amirdev.dev{' '}
         </Link>
         | All Rights Reserved
       </div>

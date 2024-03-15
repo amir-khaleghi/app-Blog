@@ -25,6 +25,8 @@ import {
 import { Card, CardTitle } from './ui/card';
 import { Textarea } from './ui/textarea';
 import BackButton from './BackButton';
+import useFormHook from '@/hooks/useFormHook';
+import HomePageLoader from '@/app/loading';
 
 // ─── Type ─────────────────────────────────────────── 🟩 ─
 
@@ -36,23 +38,20 @@ interface FormProps {
     content: string;
     category: string;
   }>;
-  options: string[];
-  form: UseFormReturn<{
-    title: string;
-    content: string;
-    category: string;
-  }>;
+  tags: string[];
 }
 
 // ─── Comp ─────────────────────────────────────────── 🟩 ─
-export function PostForm({
-  title,
-  buttonName,
-  submitHandler,
-  options,
-  form,
-}: FormProps) {
+export function PostForm({ title, buttonName, submitHandler }: FormProps) {
+  /* Get Tags ----------------------- */
+
+  const { form, tags, isLoadingTags } = useFormHook();
+
   // ─── Return ──────────────────────────────────────────────
+
+  if (isLoadingTags) {
+    return <HomePageLoader />;
+  }
 
   return (
     <Card className="p-6  gap-4  flex flex-col max-w-[600px] w-full relative">
@@ -84,7 +83,6 @@ export function PostForm({
             {/* select */}
             <FormField
               control={form.control}
-              defaultValue={options[0]}
               name="category"
               render={({ field }) => (
                 <FormItem>
@@ -99,14 +97,14 @@ export function PostForm({
                       </SelectTrigger>
                       <SelectContent>
                         <SelectGroup>
-                          {options.map((option, index) => {
+                          {tags.map((option, index) => {
                             return (
                               <SelectItem
                                 {...field}
                                 key={index}
-                                value={option}
+                                value={option.name}
                               >
-                                {option}
+                                {option.name}
                               </SelectItem>
                             );
                           })}
