@@ -27,7 +27,7 @@ export default async function Home() {
   const posts = await getPosts();
   return (
     <div className="flex flex-col justify-between min-h-screen">
-      {posts.length > 0 ? (
+      {posts && posts.length > 0 ? (
         <Suspense fallback={<PostCardSkeleton />}>
           <PostList posts={posts} />
         </Suspense>

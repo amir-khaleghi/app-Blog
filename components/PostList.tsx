@@ -15,7 +15,7 @@ interface PostListProps {
 const PostList: FC<PostListProps> = ({ posts }) => {
   return (
     <div className="flex flex-wrap sm:px-10  items-center justify-center  gap-6  lg:px-[100px] md:px-8">
-      {posts.map((post) => {
+      {posts?.map((post) => {
         const { id, name, content, tag } = post;
 
         return (
