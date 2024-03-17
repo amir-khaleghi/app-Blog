@@ -13,7 +13,7 @@ const BackButton = ({ className }: BackButtonProps) => {
       className={className}
       onClick={() => router.back()}
     >
-      <Undo2 /> Back
+      <Undo2 />
     </Button>
   );
 };

@@ -38,7 +38,7 @@ const Navbar = () => {
             />
           </div>
         ) : (
-          <div className="absolute right-14 top-80 md:top-20 scale-150 -z-10 md:-right-80 ">
+          <div className="absolute right-14 top-80 md:top-10 scale-150 -z-10 md:-right-[500px] ">
             <Image
               className="w-60 md:w-80"
               src={blog2}

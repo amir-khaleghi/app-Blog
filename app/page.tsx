@@ -1,63 +1,54 @@
 import Footer from '@/components/Footer';
-import { CardComp } from '@/components/CardComp';
+import PostCardSkeleton from '@/components/PostCardSkeleton';
+import PostList from '@/components/PostList';
+import { db } from '@/lib/db';
+import { Suspense } from 'react';
+import Image from 'next/image';
+// import { blog4 } from '@/public';
+import blog4 from '@/public/blog4.svg';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+async function getPosts() {
+  const posts = await db.post.findMany({
+    select: {
+      id: true,
+      name: true,
+      content: true,
+      tag: true,
+    },
+    orderBy: {
+      createAt: 'desc',
+    },
+  });
+  return posts;
+}
 
-const db = [
-  {
-    id: 'asdkfadf2f2f2dkjfkl',
-    title: 'Post Name',
-    description: 'Create a new post',
-    content:
-      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat illo quos perspiciatis eligendi provident expedita repudiandae officiis omnis, ipsa delectus! Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt veniam consequatur ea voluptatibus rem esse nostrum reprehenderit beatae ipsa vitae.',
-  },
-  {
-    id: 'asdkfasdfadfasdfw32f323dkjfkl',
-    title: 'Post Name',
-    description: 'Create a new post',
-    content:
-      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat illo quos perspiciatis eligendi provident expedita repudiandae officiis omnis, ipsa delectus! Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt veniam consequatur ea voluptatibus rem esse nostrum reprehenderit beatae ipsa vitae.',
-  },
-  {
-    id: 'asdkfdfa232323sdfadsfdkjfkl',
-    title: 'Post Name',
-    description: 'Create a new post',
-    content:
-      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat illo quos perspiciatis eligendi provident expedita repudiandae officiis omnis, ipsa delectus! Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt veniam consequatur ea voluptatibus rem esse nostrum reprehenderit beatae ipsa vitae.',
-  },
-  {
-    id: 'dfas22323dfadsfadfadfad',
-    title: 'Post Name',
-    description: 'Create a new post',
-    content:
-      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat illo quos perspiciatis eligendi provident expedita repudiandae officiis omnis, ipsa delectus! Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt veniam consequatur ea voluptatibus rem esse nostrum reprehenderit beatae ipsa vitae.',
-  },
-];
-
-export default function Home() {
+export default async function Home() {
+  const posts = await getPosts();
   return (
-    <>
-      <div className="flex flex-wrap sm:px-10  items-center justify-center  gap-6 md:pt-24 lg:px-[100px] md:px-8">
-        {db.map((card) => {
-          const { id, title, description, content } = card;
-          return (
-            <div
-              className="max-w-80 grow"
-              key={id}
-            >
-              <CardComp
-                id={id}
-                className="bg-orange-300 max-w-[350px] grow ease-in-out duration-300 rounded-md  shadow-md dark:shadow-white bg-gradient-to-t from-muted/50 to-muted hover:scale-105 hover:select-none hover:-rotate-1"
-                title={title}
-                description={description}
-                buttonRText={'Read More'}
-                buttonLText={'Save'}
-              >
-                {content.slice(0, 150)} ...
-              </CardComp>
-            </div>
-          );
-        })}
-      </div>
-      {/* <Footer /> */}
-    </>
+    <div className="flex flex-col justify-between min-h-screen">
+      {posts.length > 0 ? (
+        <Suspense fallback={<PostCardSkeleton />}>
+          <PostList posts={posts} />
+        </Suspense>
+      ) : (
+        <div className=" flex flex-col items-center justify-center  gap-8">
+          <Image
+            className="w-60 md:w-80"
+            src={blog4}
+            width="300"
+            height="300"
+            alt="blog svg"
+          />
+          <Link href="/create-post">
+            <Button className="text-xl hover:scale-110 hover:bg-orange-500 ease-in-out transition  duration-700">
+              Add New Post
+            </Button>
+          </Link>
+        </div>
+      )}
+
+      <Footer />
+    </div>
   );
 }

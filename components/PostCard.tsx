@@ -1,3 +1,4 @@
+'use client';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -10,32 +11,55 @@ import {
 import Link from 'next/link';
 import { Pencil, Trash2 } from 'lucide-react';
 import BackButton from './BackButton';
+import { cn } from '@/lib/utils';
+import { Tag } from '@prisma/client';
+import { FC } from 'react';
+import { useMutation } from '@tanstack/react-query';
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 interface PostCardProps {
-  id: string;
+  post: {
+    id: string;
+    name: string;
+    content: string;
+    tag: Tag;
+  };
+  className: string;
 }
 
 // ─── Comp ─────────────────────────────────────────── 🟩 ─
 
-const PostCard = ({ id }: PostCardProps) => {
+const PostCard: FC<PostCardProps> = ({ post, className }) => {
+  const { id, name, content } = post;
+  const router = useRouter();
+
+  // ─── Deletepost ──────────────────────────────────────────
+
+  const { mutate: deletePostHandler } = useMutation({
+    mutationFn: async () => {
+      return axios.delete(`/api/posts/${id}`);
+    },
+
+    onError: (error) => {
+      console.log('We have error in mutation', error);
+    },
+    onSuccess: () => {
+      router.push('/');
+      router.refresh();
+    },
+  });
+
+  // ─── Return ──────────────────────────────────────────────
+
   return (
-    <Card className="max-w-[1000px] relative">
-      <BackButton className="right-0 absolute top-0" />
+    <Card className={cn('max-w-[1000px] relative', className)}>
+      <BackButton className="right-0 absolute top-0 rounded-tl-none rounded-br-none " />
       <CardHeader>
-        <CardTitle>Post Title</CardTitle>
+        <CardTitle>{name}</CardTitle>
       </CardHeader>
-      <CardContent>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere fugiat
-        molestias iusto adipisci voluptate eaque expedita consequatur? Aperiam,
-        hic eligendi. Sapiente quae tempora ea ratione quidem soluta officia
-        culpa saepe dolor quibusdam, estias iusto adipisci voluptate eaque
-        expedita consequatur? Aperiam, hic eligendi. Sapiente quae tempora ea
-        ratione quidem soluta officia culpa saepe dolor quibusdam, estias iusto
-        adipisci voluptate eaque expedita consequatur? Aperiam, hic eligendi.
-        Sapiente quae tempora ea ratione quidem soluta officia culpa saepe dolor
-        quibusdam, repellendus, optio commodi sed id nostrum modi numquam?
-      </CardContent>
-      <CardFooter className="flex justify-between">
+      <CardContent>{content}</CardContent>
+      <CardFooter className="flex justify-between ">
         <Link href={`/edit/${id}`}>
           <Button className="w-fit gap-2">
             <Pencil />
@@ -45,6 +69,7 @@ const PostCard = ({ id }: PostCardProps) => {
         <Button
           className="w-fit gap-2"
           variant="destructive"
+          onClick={() => deletePostHandler()}
         >
           <Trash2 />
           Delete

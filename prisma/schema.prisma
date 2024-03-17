@@ -22,7 +22,7 @@ model Tag {
 model Post {
   id       String   @id @default(uuid())
   name     String   @db.VarChar(250)
-  cotent   String
+  content  String
   createAt DateTime @default(now())
   updtedAt DateTime @updatedAt
   tagId    String

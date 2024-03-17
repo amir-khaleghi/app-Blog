@@ -26,7 +26,7 @@ import { Card, CardTitle } from './ui/card';
 import { Textarea } from './ui/textarea';
 import BackButton from './BackButton';
 import useFormHook from '@/hooks/useFormHook';
-import HomePageLoader from '@/app/loading';
+import { FormInputs } from '@/app/create-post/page';
 
 // ─── Type ─────────────────────────────────────────── 🟩 ─
 
@@ -34,24 +34,34 @@ interface FormProps {
   title: string;
   buttonName: string;
   submitHandler: SubmitHandler<{
-    title: string;
+    name: string;
     content: string;
-    category: string;
+    tag: string;
   }>;
-  tags: string[];
+  isPending: boolean;
+
+  initialValue?: FormInputs;
 }
 
 // ─── Comp ─────────────────────────────────────────── 🟩 ─
-export function PostForm({ title, buttonName, submitHandler }: FormProps) {
+export function PostForm({
+  title,
+  buttonName,
+  submitHandler,
+  isPending,
+  postData,
+}: FormProps) {
   /* Get Tags ----------------------- */
 
-  const { form, tags, isLoadingTags } = useFormHook();
-
+  const { form, tags } = useFormHook();
+  React.useEffect(() => {
+    if (postData) {
+      form.setValue('name', postData.name);
+      form.setValue('content', postData.content);
+      form.setValue('tag', postData.tagId);
+    }
+  }, [postData, form]);
   // ─── Return ──────────────────────────────────────────────
-
-  if (isLoadingTags) {
-    return <HomePageLoader />;
-  }
 
   return (
     <Card className="p-6  gap-4  flex flex-col max-w-[600px] w-full relative">
@@ -66,7 +76,7 @@ export function PostForm({ title, buttonName, submitHandler }: FormProps) {
             {/* title */}
             <FormField
               control={form.control}
-              name="title"
+              name="name"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Title</FormLabel>
@@ -83,10 +93,10 @@ export function PostForm({ title, buttonName, submitHandler }: FormProps) {
             {/* select */}
             <FormField
               control={form.control}
-              name="category"
+              name="tag"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Category</FormLabel>
+                  <FormLabel>Tag</FormLabel>
                   <FormControl>
                     <Select
                       value={field.value}
@@ -97,14 +107,14 @@ export function PostForm({ title, buttonName, submitHandler }: FormProps) {
                       </SelectTrigger>
                       <SelectContent>
                         <SelectGroup>
-                          {tags.map((option, index) => {
+                          {tags.map((tag, index) => {
                             return (
                               <SelectItem
                                 {...field}
                                 key={index}
-                                value={option.name}
+                                value={tag.id}
                               >
-                                {option.name}
+                                {tag.name}
                               </SelectItem>
                             );
                           })}
@@ -135,12 +145,18 @@ export function PostForm({ title, buttonName, submitHandler }: FormProps) {
               )}
             />
           </>
-          <Button
-            className="w-full ease-in-out duration-500 transition hover:scale-95"
-            type="submit"
-          >
-            {buttonName}
-          </Button>
+          {isPending ? (
+            <Button className="w-full bg-slate-500 ease-in-out duration-500 transition hover:scale-95">
+              <div className="loader"></div>
+            </Button>
+          ) : (
+            <Button
+              className="w-full ease-in-out duration-500 transition hover:scale-95"
+              type="submit"
+            >
+              {buttonName}
+            </Button>
+          )}
         </form>
       </Form>
     </Card>

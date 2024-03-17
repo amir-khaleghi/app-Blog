@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { Suspense } from 'react';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -11,13 +11,15 @@ import {
 } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
+import { Badge } from '@/components/ui/badge';
+import { Tag } from '@prisma/client';
 
 /* Type ----------------------------- */
 interface CardCompProps {
   id: string;
+  tag: Tag;
   className?: string;
-  title: string;
-  description: string;
+  name: string;
   buttonRText: string;
   buttonLText: string;
   children?: React.ReactNode;
@@ -27,21 +29,23 @@ interface CardCompProps {
 
 export function CardComp({
   id,
+  tag,
   className,
   children,
-  title,
-  description,
+  name,
   buttonRText,
   buttonLText,
 }: CardCompProps) {
   return (
     <Card className={cn(className)}>
       <CardHeader className="">
-        <CardTitle>{title}</CardTitle>
-        <CardDescription>{description}</CardDescription>
+        <CardTitle>{name}</CardTitle>
+        {/* <CardDescription>{description}</CardDescription> */}
       </CardHeader>
       <CardContent>{children}</CardContent>
-      <CardFooter className="flex justify-end">
+      <CardFooter className="flex justify-between">
+        <Badge variant="outline">{tag?.name}</Badge>
+
         {/* <Button variant="outline">{buttonLText}</Button> */}
         <Link href={`post-page/${id}`}>
           <Button>{buttonRText}</Button>

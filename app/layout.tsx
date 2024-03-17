@@ -7,7 +7,6 @@ import Image from 'next/image';
 import vector1 from '@/public/vector1.svg';
 import Navbar from '@/components/Navbar';
 import Provider from '@/components/Provider';
-import Footer from '@/components/Footer';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -34,7 +33,7 @@ export default function RootLayout({
       <body
         className={cn(
           inter.className,
-          'flex flex-col items-center justify-between min-h-screen  overflow-x-hidden'
+          'flex flex-col items-center  min-h-screen  overflow-x-hidden'
         )}
       >
         <Provider>
@@ -61,7 +60,6 @@ export default function RootLayout({
               {children}
             </ThemeProvider>
           </div>
-          <Footer />
         </Provider>
       </body>
     </html>
