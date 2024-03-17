@@ -1,18 +1,29 @@
-// app/page.tsx
 import Footer from '@/components/Footer';
 import PostList from '@/components/PostList';
 import { db } from '@/lib/db';
 
-export default async function Home() {
+async function getPosts() {
   const posts = await db.post.findMany({
-    select: { id: true, name: true, content: true, tag: true },
-    orderBy: { createAt: 'desc' },
+    select: {
+      id: true,
+      name: true,
+      content: true,
+      tag: true,
+    },
+    orderBy: {
+      createAt: 'desc',
+    },
   });
-
+  return posts;
+}
+export default async function Home() {
+  const posts = await getPosts();
+  console.log(posts);
   return (
-    <div className="flex flex-col justify-between min-h-screen">
+    <main className="flex flex-col justify-between min-h-screen">
       <PostList posts={posts} />
+
       <Footer />
-    </div>
+    </main>
   );
 }
