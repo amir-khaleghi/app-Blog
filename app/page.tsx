@@ -6,7 +6,7 @@ import { db } from '@/lib/db';
 export default async function Home() {
   const posts = await db.post.findMany({
     select: { id: true, name: true, content: true, tag: true },
-    orderBy: { createdAt: 'desc' },
+    orderBy: { createAt: 'desc' },
   });
 
   return (
