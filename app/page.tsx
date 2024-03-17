@@ -17,18 +17,19 @@ async function getPosts() {
       tag: true,
     },
     orderBy: {
-      updatedAt: 'desc',
+      createAt: 'desc',
     },
   });
+  return posts;
 }
 
 export default async function Home() {
-  const { props } = await getPosts();
+  const posts = await getPosts();
   return (
     <div className="flex flex-col justify-between min-h-screen">
-      {props && props.posts.length > 0 ? (
+      {posts.length > 0 ? (
         <Suspense fallback={<PostCardSkeleton />}>
-          <PostList posts={props.posts} />
+          <PostList posts={posts} />
         </Suspense>
       ) : (
         <div className=" flex flex-col items-center justify-center  gap-8">
