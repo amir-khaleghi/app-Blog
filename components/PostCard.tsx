@@ -36,7 +36,7 @@ const PostCard: FC<PostCardProps> = ({ post, className }) => {
 
   // ─── Deletepost ──────────────────────────────────────────
 
-  const { mutate: deletePostHandler } = useMutation({
+  const { mutate: deletePostHandler, isPending } = useMutation({
     mutationFn: async () => {
       return axios.delete(`/api/posts/${id}`);
     },
@@ -66,14 +66,22 @@ const PostCard: FC<PostCardProps> = ({ post, className }) => {
             Edit
           </Button>
         </Link>
-        <Button
-          className="w-fit gap-2"
-          variant="destructive"
-          onClick={() => deletePostHandler()}
-        >
-          <Trash2 />
-          Delete
-        </Button>
+        {isPending ? (
+          <Button className="w-40 bg-red-100 ease-in-out duration-500 transition hover:scale-95">
+            <div className="loader"></div>
+            <Trash2 />
+            Delete
+          </Button>
+        ) : (
+          <Button
+            className="w-fit gap-2"
+            variant="destructive"
+            onClick={() => deletePostHandler()}
+          >
+            <Trash2 />
+            Delete
+          </Button>
+        )}
       </CardFooter>
     </Card>
   );
