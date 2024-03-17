@@ -50,7 +50,7 @@ const EditPost = ({ params }) => {
       console.log('We have error in mutation', error);
     },
     onSuccess: () => {
-      router.push(`/post-page/${id}`);
+      router.push(`/`);
       router.refresh();
     },
   });

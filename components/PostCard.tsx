@@ -31,14 +31,9 @@ interface PostCardProps {
 // ─── Comp ─────────────────────────────────────────── 🟩 ─
 
 const PostCard: FC<PostCardProps> = ({ post, className }) => {
-  if (!post) {
-    return null; // or render a placeholder or error message
-  }
-  if (!post) {
-    return null; // or render a placeholder or error message
-  }
-  const { id, name, content } = post;
   const router = useRouter();
+
+  const { id, name, content } = post;
 
   // ─── Deletepost ──────────────────────────────────────────a
 
