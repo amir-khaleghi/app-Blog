@@ -17,7 +17,7 @@ async function getPosts() {
       tag: true,
     },
     orderBy: {
-      updtedAt: 'desc',
+      updatedAt: 'desc',
     },
   });
 
