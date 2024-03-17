@@ -24,7 +24,7 @@ model Post {
   name     String   @db.VarChar(250)
   content  String
   createAt DateTime @default(now())
-  updtedAt DateTime @updatedAt
+  updatedAt DateTime @updatedAt
   tagId    String
   tag      Tag      @relation(fields: [tagId], references: [id])
 }
