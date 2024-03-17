@@ -20,16 +20,22 @@ async function getPosts() {
       updtedAt: 'desc',
     },
   });
-  return posts;
+
+  return {
+    props: {
+      posts,
+    },
+    revalidate: 2, // Regenerate the page every 60 seconds
+  };
 }
 
 export default async function Home() {
-  const posts = await getPosts();
+  const { props } = await getPosts();
   return (
     <div className="flex flex-col justify-between min-h-screen">
-      {posts && posts.length > 0 ? (
+      {props && props.posts.length > 0 ? (
         <Suspense fallback={<PostCardSkeleton />}>
-          <PostList posts={posts} />
+          <PostList posts={props.posts} />
         </Suspense>
       ) : (
         <div className=" flex flex-col items-center justify-center  gap-8">
