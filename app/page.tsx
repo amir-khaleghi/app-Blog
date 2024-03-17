@@ -20,13 +20,6 @@ async function getPosts() {
       updatedAt: 'desc',
     },
   });
-
-  return {
-    props: {
-      posts,
-    },
-    revalidate: 2, // Regenerate the page every 60 seconds
-  };
 }
 
 export default async function Home() {
