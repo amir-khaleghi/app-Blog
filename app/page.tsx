@@ -2,15 +2,13 @@ import Footer from '@/components/Footer';
 import PostCardSkeleton from '@/components/PostCardSkeleton';
 import PostList from '@/components/PostList';
 import { db } from '@/lib/db';
-import { Suspense } from 'react';
+import { Suspense, cache } from 'react';
 import Image from 'next/image';
 // import { blog4 } from '@/public';
 import blog4 from '@/public/blog4.svg';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-async function getPosts() {
-  'use server';
-
+const getPosts = cache(async () => {
   const posts = await db.post.findMany({
     select: {
       id: true,
@@ -23,7 +21,7 @@ async function getPosts() {
     },
   });
   return posts;
-}
+});
 
 export default async function Home() {
   const posts = await getPosts();
