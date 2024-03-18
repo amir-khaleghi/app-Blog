@@ -1,4 +1,3 @@
-'use client';
 import { CardComp } from '@/components/CardComp';
 
 import { FC } from 'react';
