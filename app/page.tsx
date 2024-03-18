@@ -9,6 +9,8 @@ import blog4 from '@/public/blog4.svg';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 async function getPosts() {
+  'use server';
+
   const posts = await db.post.findMany({
     select: {
       id: true,
@@ -27,7 +29,7 @@ export default async function Home() {
   const posts = await getPosts();
   return (
     <div className="flex flex-col justify-between min-h-screen">
-      {posts?.length > 0 ? (
+      {posts.length > 0 ? (
         <Suspense fallback={<PostCardSkeleton />}>
           <PostList posts={posts} />
         </Suspense>
