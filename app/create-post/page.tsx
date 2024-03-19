@@ -8,6 +8,7 @@ import axios from 'axios';
 import { Suspense } from 'react';
 import { z } from 'zod';
 import { useRouter } from 'next/navigation';
+import { revalidatePath } from 'next/cache';
 export type FormInputs = {
   name: string;
   content: string;

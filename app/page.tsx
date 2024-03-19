@@ -1,27 +1,21 @@
-import Footer from '@/components/Footer';
-import PostCardSkeleton from '@/components/PostCardSkeleton';
-import PostList from '@/components/PostList';
 import { db } from '@/lib/db';
-import { Suspense, cache } from 'react';
 import Image from 'next/image';
 // import { blog4 } from '@/public';
 import blog4 from '@/public/blog4.svg';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { cn } from '@/lib/utils';
-import Link from 'next/link';
+import { Badge } from '@/components/ui/badge';
+import { revalidatePath } from 'next/cache';
 
-// ─── Function ─────────────────────────────────────── 🟩 ─
-
-const getPosts = cache(async () => {
+async function getPosts() {
+  'use server';
   const posts = await db.post.findMany({
     select: {
       id: true,
@@ -33,8 +27,9 @@ const getPosts = cache(async () => {
       createAt: 'desc',
     },
   });
+  revalidatePath('/');
   return posts;
-});
+}
 
 export default async function Home() {
   const posts = await getPosts();
@@ -55,7 +50,7 @@ export default async function Home() {
                     <CardTitle>{name}</CardTitle>
                     {/* <CardDescription>{description}</CardDescription> */}
                   </CardHeader>
-                  <CardContent> {content.slice(0, 150)} ...</CardContent>
+                  <CardContent>{content}</CardContent>
                   <CardFooter className="flex justify-between">
                     <Badge variant="outline">{tag?.name}</Badge>
 
@@ -86,7 +81,7 @@ export default async function Home() {
         </div>
       )}
 
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
