@@ -78,6 +78,7 @@ const EditPost = ({ params }) => {
         title="Edit Post"
         buttonName="Update"
         submitHandler={handleEditPost}
+        isPending={isPending}
       />
       <Footer />
     </div>

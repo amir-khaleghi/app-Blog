@@ -19,12 +19,12 @@ const PostList: FC<PostListProps> = ({ posts }) => {
 
         return (
           <div
-            className="min-w-80 "
+            className="w-80 h-80"
             key={id}
           >
             <CardComp
               id={id}
-              className="bg-orange-300 max-w-[350px] grow ease-in-out duration-300 rounded-md  shadow-md dark:shadow-white bg-gradient-to-t from-muted/50 to-muted hover:scale-105 hover:select-none hover:-rotate-1"
+              className="bg-orange-300 w-full h-full  grow ease-in-out duration-300 rounded-md  shadow-md dark:shadow-white bg-gradient-to-t from-muted/50 to-muted  hover:select-none  "
               name={name}
               tag={tag}
               buttonRText={'Read More'}

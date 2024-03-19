@@ -35,18 +35,22 @@ export function CardComp({
   buttonLText,
 }: CardCompProps) {
   return (
-    <Card className={cn(className)}>
-      <CardHeader className="">
-        <CardTitle>{name}</CardTitle>
-        {/* <CardDescription>{description}</CardDescription> */}
-      </CardHeader>
-      <CardContent>{children}</CardContent>
+    <Card className={cn(className, 'flex flex-col justify-between')}>
+      <div>
+        <CardHeader className="">
+          <CardTitle>{name}</CardTitle>
+          {/* <CardDescription>{description}</CardDescription> */}
+        </CardHeader>
+        <CardContent>{children}</CardContent>
+      </div>
       <CardFooter className="flex justify-between">
         <Badge variant="outline">{tag?.name}</Badge>
 
         {/* <Button variant="outline">{buttonLText}</Button> */}
         <Link href={`post-page/${id}`}>
-          <Button>{buttonRText}</Button>
+          <Button className="hover:scale-105 duration-300 ease-in-out transition ">
+            {buttonRText}
+          </Button>
         </Link>
       </CardFooter>
     </Card>

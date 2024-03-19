@@ -68,10 +68,8 @@ const PostCard: FC<PostCardProps> = ({ post, className }) => {
           </Button>
         </Link>
         {isPending ? (
-          <Button className="w-40 bg-red-100 ease-in-out duration-500 transition hover:scale-95">
+          <Button className="w-28 gap-2 bg-red-300">
             <div className="loader"></div>
-            <Trash2 />
-            Delete
           </Button>
         ) : (
           <Button

@@ -30,9 +30,10 @@ import { FormInputs } from '@/app/create-post/page';
 
 // ─── Type ─────────────────────────────────────────── 🟩 ─
 
-interface FormProps {
+export interface FormProps {
   title: string;
   buttonName: string;
+  postData: FormProps;
   submitHandler: SubmitHandler<{
     name: string;
     content: string;
