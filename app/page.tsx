@@ -13,6 +13,7 @@ import {
 } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { revalidatePath } from 'next/cache';
+import Footer from '@/components/Footer';
 
 async function getPosts() {
   'use server';
@@ -81,7 +82,7 @@ export default async function Home() {
         </div>
       )}
 
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }
