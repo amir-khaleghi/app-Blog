@@ -136,7 +136,7 @@ export function PostForm({
                   <FormControl>
                     <Textarea
                       className="min-h-80"
-                      placeholder="Post title ..."
+                      placeholder="Post Content ..."
                       {...field}
                     />
                   </FormControl>

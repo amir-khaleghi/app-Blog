@@ -50,7 +50,7 @@ export default function RootLayout({
             />
           </div>
 
-          <div className="p-4 overflow-x-hidden md:p-20 w-full">
+          <div className="overflow-x-hidden pb-none md:px-20 px-4 pt-10 w-full h-full">
             <ThemeProvider
               attribute="class"
               defaultTheme="system"

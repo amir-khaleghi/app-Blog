@@ -36,11 +36,13 @@ export function CardComp({
 }: CardCompProps) {
   return (
     <Card className={cn(className)}>
-      <CardHeader className="">
-        <CardTitle>{name}</CardTitle>
-        {/* <CardDescription>{description}</CardDescription> */}
-      </CardHeader>
-      <CardContent>{children}</CardContent>
+      <div>
+        <CardHeader className="">
+          <CardTitle>{name}</CardTitle>
+          {/* <CardDescription>{description}</CardDescription> */}
+        </CardHeader>
+        <CardContent>{children}</CardContent>
+      </div>
       <CardFooter className="flex justify-between">
         <Badge variant="outline">{tag?.name}</Badge>
 

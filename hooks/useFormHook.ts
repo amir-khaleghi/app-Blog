@@ -21,9 +21,14 @@ const useFormHook = () => {
   const tagIds = tags.map((tag) => tag.id);
 
   const formSchema = z.object({
-    name: z.string().min(1, {
-      message: `Title can't be empty`,
-    }),
+    name: z
+      .string()
+      .min(1, {
+        message: `Title can't be empty`,
+      })
+      .max(20, {
+        message: `Title can't be more than 20 characters`,
+      }),
     content: z.string().min(1, {
       message: 'Content must be at least 10 characters.',
     }),
