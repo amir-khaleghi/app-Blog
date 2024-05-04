@@ -38,7 +38,7 @@ export function CardComp({
     <Card className={cn(className)}>
       <div>
         <CardHeader className="">
-          <CardTitle>{name}</CardTitle>
+          <CardTitle className="text-xl">{name}</CardTitle>
           {/* <CardDescription>{description}</CardDescription> */}
         </CardHeader>
         <CardContent>{children}</CardContent>

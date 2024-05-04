@@ -38,7 +38,6 @@ export default async function Home() {
   return (
     <div>
       <PostList posts={posts} />
-
       <Footer />
     </div>
   );
