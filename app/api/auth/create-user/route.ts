@@ -39,7 +39,7 @@ export async function GET() {
       }
     }
 
-    return NextResponse.redirect('http://localhost:3000/home');
+    return NextResponse.redirect('https://blog-app.liara.run/home');
   } catch (err) {
     console.error('Internal Server Error:', err);
     return NextResponse.json(
