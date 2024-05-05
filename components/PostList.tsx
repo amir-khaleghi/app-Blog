@@ -6,7 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 interface Post {
   id: string;
-  title: string;
+  name: string;
   content: string;
   tag: { id: string; name: string };
 }
@@ -25,7 +25,7 @@ const PostList: FC<PostListProps> = ({ posts }) => {
     <div className="flex min-h-screen flex-wrap md:mx-[50px] lg:mx-[170px]  xl:mx-[300px] items-start justify-center mb-40 md:pt-20 gap-4 ">
       {postArray.length > 0 ? (
         postArray?.map((post) => {
-          const { id, title, content, tag } = post;
+          const { id, name: title, content, tag } = post;
           return (
             <CardComp
               key={id}
