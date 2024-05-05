@@ -1,6 +1,5 @@
 'use client';
 
-import * as React from 'react';
 import { SubmitHandler, UseFormReturn } from 'react-hook-form';
 
 import { Button } from '@/components/ui/button';
@@ -27,6 +26,7 @@ import { Textarea } from './ui/textarea';
 import BackButton from './BackButton';
 import useFormHook from '@/hooks/useFormHook';
 import { FormInputs } from '@/app/create-post/page';
+import { useEffect } from 'react';
 
 // ─── Type ─────────────────────────────────────────── 🟩 ─
 
@@ -54,7 +54,7 @@ export function PostForm({
   /* Get Tags ----------------------- */
 
   const { form, tags } = useFormHook();
-  React.useEffect(() => {
+  useEffect(() => {
     if (postData) {
       form.setValue('name', postData.name);
       form.setValue('content', postData.content);

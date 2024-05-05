@@ -17,7 +17,7 @@ interface CardCompProps {
   id: string;
   tag: Tag;
   className?: string;
-  name: string;
+  title: string;
   buttonRText: string;
   buttonLText: string;
   children?: React.ReactNode;
@@ -30,7 +30,7 @@ export function CardComp({
   tag,
   className,
   children,
-  name,
+  title,
   buttonRText,
   buttonLText,
 }: CardCompProps) {
@@ -38,17 +38,22 @@ export function CardComp({
     <Card className={cn(className)}>
       <div>
         <CardHeader className="">
-          <CardTitle className="text-xl">{name}</CardTitle>
+          <CardTitle className="text-xl">{title}</CardTitle>
           {/* <CardDescription>{description}</CardDescription> */}
         </CardHeader>
-        <CardContent>{children}</CardContent>
+        <CardContent className="  tracking-wide">{children}</CardContent>
       </div>
       <CardFooter className="flex justify-between">
         <Badge variant="outline">{tag?.name}</Badge>
 
         {/* <Button variant="outline">{buttonLText}</Button> */}
-        <Link href={`post-page/${id}`}>
-          <Button>{buttonRText}</Button>
+        <Link href={`/home/post-page/${id}`}>
+          <Button
+            className="text-xs "
+            size="sm"
+          >
+            {buttonRText}
+          </Button>
         </Link>
       </CardFooter>
     </Card>

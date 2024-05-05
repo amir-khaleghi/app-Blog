@@ -1,24 +1,17 @@
 import { db } from '@/lib/db';
-import Image from 'next/image';
-// import { blog4 } from '@/public';
-import blog4 from '@/public/blog4.svg';
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 import { revalidatePath } from 'next/cache';
 import Footer from '@/components/Footer';
 import PostList from '@/components/PostList';
+import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
 
 async function getPosts() {
   'use server';
+  const { getUser } = getKindeServerSession();
+  const user = await getUser();
   const posts = await db.post.findMany({
+    where: {
+      userId: user?.id,
+    },
     select: {
       id: true,
       name: true,

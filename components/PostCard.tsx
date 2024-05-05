@@ -61,7 +61,7 @@ const PostCard: FC<PostCardProps> = ({ post, className }) => {
       </CardHeader>
       <CardContent>{content}</CardContent>
       <CardFooter className="flex justify-between ">
-        <Link href={`/edit/${id}`}>
+        <Link href={`/home/edit/${id}`}>
           <Button className="w-fit gap-2">
             <Pencil />
             Edit

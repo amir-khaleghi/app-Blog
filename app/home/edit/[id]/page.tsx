@@ -1,15 +1,12 @@
 'use client';
 import { FormInputs } from '@/app/create-post/page';
-import { getPost } from '@/app/post-page/[id]/page';
 import Footer from '@/components/Footer';
 import { PostForm } from '@/components/PostForm';
 import useFormHook from '@/hooks/useFormHook';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
 import { z } from 'zod';
-// import { useRouter } from 'next/navigation';
 
 /* Type ----------------------------- */
 interface EditProps {
@@ -19,7 +16,7 @@ interface EditProps {
 }
 // ─── Comp ─────────────────────────────────────────── 🟩 ─
 
-const EditPost = ({ params }) => {
+const EditPost = ({ params }: { params: { id: string } }) => {
   const id = params.id;
 
   // Get the router object
