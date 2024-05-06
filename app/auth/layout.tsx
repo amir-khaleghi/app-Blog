@@ -7,11 +7,14 @@ import Navbar from '@/components/Navbar';
 
 const AuthRootLayout = ({ children }: { children: ReactNode }) => {
   return (
-    <html lang="en ">
+    <html
+      className="overflow-hidden"
+      lang="en "
+    >
       <head />
-      <body className=" h-screen w-screen  font-sans   overflow-hidden">
-        <div className=" pb-none  px-4 w-full h-full">
-          <div className="absolute top-16 -left-40 rotate-180 -z-20 overflow-x-hidden">
+      <body className=" h-screen w-full relative font-sans   ">
+        <div className=" pb-none  px-4 w-full h-full  overflow-x-hidden">
+          <div className="absolute top-16 -left-40 rotate-180 -z-20 ">
             <Image
               className="w-[1200px]"
               src={vector1}
@@ -28,7 +31,7 @@ const AuthRootLayout = ({ children }: { children: ReactNode }) => {
           >
             {children}
           </ThemeProvider>
-          <div className="absolute bottom-0 -right-40  -z-20 overflow-x-hidden">
+          <div className="absolute bottom-0 -right-40  -z-20 ">
             <Image
               className="w-[1200px]"
               src={vector1}
