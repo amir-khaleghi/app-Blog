@@ -31,7 +31,7 @@ export function NavigationComp() {
 
   return (
     <NavigationMenu>
-      <NavigationMenuList className=" p-2 justify-center">
+      <NavigationMenuList className=" p-2 justify-between w-full">
         {/* home */}
         <NavigationMenuItem>
           <Link
@@ -57,7 +57,7 @@ export function NavigationComp() {
           </Link>
         </NavigationMenuItem>
         {/* newsletter */}
-        <NavigationMenuItem>
+        {/* <NavigationMenuItem>
           <NavigationMenuTrigger>Newsletter</NavigationMenuTrigger>
           <NavigationMenuContent>
             <Card className="w-[350px]">
@@ -88,11 +88,11 @@ export function NavigationComp() {
               </CardContent>
             </Card>
           </NavigationMenuContent>
-        </NavigationMenuItem>
+        </NavigationMenuItem> */}
         {/* logout */}
         <Button
           size="sm"
-          className="absolute -right-20 text-xs "
+          className="   text-xs "
           variant="destructive"
         >
           <LogoutLink>Log out </LogoutLink>

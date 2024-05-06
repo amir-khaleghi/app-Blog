@@ -47,7 +47,7 @@ const NewPost = () => {
   // ─── Return ──────────────────────────────────────────────
 
   return (
-    <div className="relative w-full items-center  justify-center flex flex-col">
+    <div className="relative w-full items-center  justify-center flex flex-col min-h-screen">
       <Suspense fallback={<FormSkeleton />}>
         <PostForm
           title="Create New Post"
@@ -55,8 +55,8 @@ const NewPost = () => {
           submitHandler={handleCreatePost}
           isPending={isPending}
         />
-        <Footer />
       </Suspense>
+      <Footer />
     </div>
   );
 };

@@ -22,7 +22,7 @@ const PostList: FC<PostListProps> = ({ posts }) => {
   // ─── Return ──────────────────────────────────────────────
 
   return (
-    <div className="flex min-h-screen flex-wrap md:mx-[50px] lg:mx-[170px]  xl:mx-[300px] items-start justify-center mb-40 md:pt-20 gap-4 ">
+    <div className="flex  flex-wrap md:mx-[50px] lg:mx-[170px]  xl:mx-[300px] items-start justify-center pt-4 gap-4 ">
       {postArray.length > 0 ? (
         postArray?.map((post) => {
           const { id, name: title, content, tag } = post;

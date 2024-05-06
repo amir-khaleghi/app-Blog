@@ -32,7 +32,7 @@ const PostPage = async ({ params }: PostPageProps) => {
   return (
     <div className="relative w-full items-center min-h-screen  justify-between flex flex-col">
       <PostCard
-        className="sm:min-w-[600px] w-80"
+        className="sm:min-w-[600px] w-80 mt-10"
         post={post}
       />
       <Footer />

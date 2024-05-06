@@ -69,7 +69,7 @@ const EditPost = ({ params }: { params: { id: string } }) => {
   // ─── Return ───────────────────────────────────────── 🟩 ─
 
   return (
-    <div className="relative w-full items-center justify-center flex flex-col">
+    <div className="relative w-full items-center justify-center flex flex-col ">
       <PostForm
         postData={postData}
         title="Edit Post"

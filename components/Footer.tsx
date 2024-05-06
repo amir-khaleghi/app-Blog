@@ -1,7 +1,7 @@
 'use client';
 
 import { ModeToggle } from './ModeToggle';
-import { useTheme } from 'next-themes';
+// import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import Link from 'next/link';
 import blog3 from '@/public/blog3.svg';

@@ -33,7 +33,7 @@ export default function RootLayout({
       <body
         className={cn(
           inter.className,
-          'flex flex-col items-center  min-h-screen  overflow-x-hidden'
+          'flex flex-col items-center overflow-x-hidden'
         )}
       >
         <Provider>
@@ -50,7 +50,7 @@ export default function RootLayout({
             />
           </div>
 
-          <div className="overflow-x-hidden pb-none md:px-20 px-4 pt-10 w-full h-full">
+          <div className="overflow-x-hidden pb-none md:px-20 px-4 pt-4 w-full h-full">
             <ThemeProvider
               attribute="class"
               defaultTheme="system"
