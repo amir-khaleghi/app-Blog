@@ -12,8 +12,8 @@ const AuthRootLayout = ({ children }: { children: ReactNode }) => {
       lang="en "
     >
       <head />
-      <body className=" h-screen w-full relative font-sans   ">
-        <div className=" pb-none  px-4 w-full h-full  overflow-x-hidden">
+      <body className=" h-screen w-full relative font-sans   overflow-x-hidden">
+        <div className=" pb-none  px-4   h-full  overflow-x-hidden">
           <div className="absolute top-16 -left-40 rotate-180 -z-20 ">
             <Image
               className="w-[1200px]"
