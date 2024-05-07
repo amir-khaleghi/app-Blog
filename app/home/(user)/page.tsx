@@ -32,18 +32,11 @@ export default async function Home() {
   const user = await getUser();
   const posts = await getPosts();
   return (
-    <div>
-      {user ? (
-        <>
-          <PostList posts={posts} />
-          <Footer />
-        </>
-      ) : (
-        <>
-          <Feed posts={posts} />
-          <Footer />
-        </>
-      )}
-    </div>
+    <>
+      <div className="min-h-[450px]">
+        <PostList posts={posts} />
+      </div>
+      <Footer />
+    </>
   );
 }

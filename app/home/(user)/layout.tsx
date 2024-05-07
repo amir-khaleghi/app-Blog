@@ -33,24 +33,15 @@ export default function RootLayout({
       <body
         className={cn(
           inter.className,
-          'flex flex-col w-full items-center overflow-x-hidden'
+          'flex flex-col items-center overflow-x-hidden'
         )}
       >
         <Provider>
-          <div>
+          <div className="">
             <Navbar />
           </div>
-          <div className="absolute top-16 -left-40 rotate-180 -z-20 overflow-x-hidden">
-            <Image
-              className="w-[1200px]"
-              src={vector1}
-              width="300"
-              height="300"
-              alt="blog svg"
-            />
-          </div>
 
-          <div className="overflow-x-hidden pb-none md:px-20 px-4 pt-4 w-full h-full">
+          <div className="overflow-x-hidden flex items-center flex-col justify-center pb-none md:px-20 px-4 pt-4 w-full h-full">
             <ThemeProvider
               attribute="class"
               defaultTheme="system"
