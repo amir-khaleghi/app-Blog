@@ -3,6 +3,7 @@ import { revalidatePath } from 'next/cache';
 import Footer from '@/components/Footer';
 import PostList from '@/components/PostList';
 import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
+import Feed from '@/components/Feed';
 
 async function getPosts() {
   'use server';
@@ -27,11 +28,22 @@ async function getPosts() {
 }
 
 export default async function Home() {
+  const { getUser } = getKindeServerSession();
+  const user = await getUser();
   const posts = await getPosts();
   return (
     <div>
-      <PostList posts={posts} />
-      <Footer />
+      {user ? (
+        <>
+          <PostList posts={posts} />
+          <Footer />
+        </>
+      ) : (
+        <>
+          <Feed posts={posts} />
+          <Footer />
+        </>
+      )}
     </div>
   );
 }

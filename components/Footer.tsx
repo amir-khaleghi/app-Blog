@@ -20,10 +20,10 @@ const Footer = () => {
       </div>
       <div className="absolute bottom-16 sm:bottom-14 sm:left-20 -z-10">
         <Image
-          className="w-60 md:w-80"
+          className="w-40 md:w-60"
           src={blog3}
-          width="300"
-          height="300"
+          width={150}
+          height={150}
           alt="blog svg"
         />
       </div>

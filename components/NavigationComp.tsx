@@ -26,78 +26,60 @@ import { Button } from './ui/button';
 
 // ─── Comp ─────────────────────────────────────────── 🟩 ─
 
-export function NavigationComp() {
+export function NavigationComp({ user }) {
   // ─── Return ──────────────────────────────────────────────
 
   return (
-    <NavigationMenu>
-      <NavigationMenuList className=" p-2 justify-between w-full">
-        {/* home */}
-        <NavigationMenuItem>
-          <Link
-            href="/"
-            legacyBehavior
-            passHref
-          >
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Home
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
-        {/* new post */}
-        <NavigationMenuItem>
-          <Link
-            href="/home/create-post"
-            legacyBehavior
-            passHref
-          >
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              New Post
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
-        {/* newsletter */}
-        {/* <NavigationMenuItem>
-          <NavigationMenuTrigger>Newsletter</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <Card className="w-[350px]">
-              <CardHeader>
-                <CardTitle>Keep in touch</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <form>
-                  <div className="grid w-full items-center gap-4">
-                    <div className="flex flex-col space-y-1.5">
-                      <Label htmlFor="name">Email</Label>
-                      <Input
-                        type="email"
-                        id="name"
-                        placeholder="Your Email"
-                      />
-                    </div>
-                  </div>
-                  <CardFooter className="flex justify-between  p-0 mt-2">
-                    <Button
-                      className="w-full "
-                      variant="ghost"
-                    >
-                      Subscribe
-                    </Button>
-                  </CardFooter>
-                </form>
-              </CardContent>
-            </Card>
-          </NavigationMenuContent>
-        </NavigationMenuItem> */}
-        {/* logout */}
-        <Button
-          size="sm"
-          className="   text-xs "
-          variant="destructive"
-        >
-          <LogoutLink>Log out </LogoutLink>
-        </Button>
-      </NavigationMenuList>
-    </NavigationMenu>
+    <div className="flex items-center justify-between w-full">
+      <NavigationMenu>
+        <NavigationMenuList className=" p-2 justify-between w-full">
+          {/* home */}
+          <NavigationMenuItem>
+            <Link
+              href="/"
+              legacyBehavior
+              passHref
+            >
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                Home
+              </NavigationMenuLink>
+            </Link>
+          </NavigationMenuItem>
+          {/* new post */}
+          <NavigationMenuItem>
+            <Link
+              href="/home/create-post"
+              legacyBehavior
+              passHref
+            >
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                New Post
+              </NavigationMenuLink>
+            </Link>
+          </NavigationMenuItem>
+          {/*Feed */}
+          <NavigationMenuItem>
+            <Link
+              href={`/home/${user?.id}`}
+              legacyBehavior
+              passHref
+            >
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                Feed
+              </NavigationMenuLink>
+            </Link>
+          </NavigationMenuItem>
+
+          {/* logout */}
+        </NavigationMenuList>
+      </NavigationMenu>
+      <Button
+        size="sm"
+        className="   text-xs "
+        variant="destructive"
+      >
+        <LogoutLink>Log out </LogoutLink>
+      </Button>
+    </div>
   );
 }

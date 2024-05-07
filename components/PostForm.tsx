@@ -64,13 +64,13 @@ export function PostForm({
   // ─── Return ──────────────────────────────────────────────
 
   return (
-    <Card className="p-6  gap-4  flex flex-col max-w-[600px] w-full relative">
+    <Card className="p-6  gap-4  flex flex-col max-w-[400px] w-full relative">
       <CardTitle>{title}</CardTitle>
       <BackButton className="absolute right-0 top-0 rounded-tl-none rounded-br-none " />
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(submitHandler)}
-          className="space-y-4 "
+          className="space-y-2 "
         >
           <>
             {/* title */}
@@ -135,7 +135,7 @@ export function PostForm({
                   <FormLabel>Content</FormLabel>
                   <FormControl>
                     <Textarea
-                      className="min-h-80"
+                      className="min-h-60"
                       placeholder="Post Content ..."
                       {...field}
                     />

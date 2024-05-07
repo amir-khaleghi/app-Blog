@@ -26,6 +26,7 @@ export async function GET() {
         dbUser = await db.user.create({
           data: {
             email: user.email ?? '',
+            emailName: user.email.split('@')[0] ?? '',
             firstName: user.given_name ?? '',
             lastName: user.family_name ?? '',
             id: user.id,

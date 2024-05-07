@@ -1,10 +1,7 @@
 import Image from 'next/image';
 import { NavigationComp } from './NavigationComp';
-import blog2 from '@/public/blog2.svg';
-// import { ModeToggle } from './ModeToggle';
-
-import { Rss } from 'lucide-react';
 import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
+
 // ─── Comp ─────────────────────────────────────────── 🟩 ─
 
 const Navbar = async () => {
@@ -14,7 +11,7 @@ const Navbar = async () => {
   // ─── Return ──────────────────────────────────────────────
 
   return (
-    <div className="sm:w-[500px]">
+    <div className=" lg:w-[700px] md:w-[600px]">
       <div className="flex relative my-5 border-b-2 items-center justify-center w-full md:mb-10 ">
         <div className="hidden md:block">
           <p className="absolute md:top-16 -top-6 left-4 select-none">
@@ -31,19 +28,9 @@ const Navbar = async () => {
           </div>
         </div>
 
-        <div className="absolute right-12 top-80 md:top-10 scale-150 -z-10 md:left-[500px] ">
-          <Image
-            className="w-40 md:w-80"
-            src={blog2}
-            width="300"
-            height="300"
-            alt="blog svg"
-          />
-        </div>
-        <NavigationComp />
-        {/* <Rss /> */}
+        <NavigationComp user={user} />
       </div>
-      <div className=" md:hidden items-center  justify-center flex flex-col mb-[300px] gap-4">
+      <div className=" md:hidden items-center  justify-center flex flex-col mb-[20px] gap-4">
         <Image
           className="rounded-full w-20  md:w-20 md:mt-8 "
           src={user?.picture ?? 'https://avatar.vercel.sh/rauchg'}

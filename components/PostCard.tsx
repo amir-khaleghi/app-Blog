@@ -26,11 +26,12 @@ interface PostCardProps {
     tag: Tag;
   };
   className: string;
+  isUser: boolean;
 }
 
 // ─── Comp ─────────────────────────────────────────── 🟩 ─
 
-const PostCard: FC<PostCardProps> = ({ post, className }) => {
+const PostCard: FC<PostCardProps> = ({ post, className, isUser }) => {
   const router = useRouter();
 
   const { id, name, content } = post;
@@ -55,35 +56,44 @@ const PostCard: FC<PostCardProps> = ({ post, className }) => {
 
   return (
     <Card className={cn('max-w-[1000px] relative', className)}>
-      <BackButton className="right-0 absolute top-0 rounded-tl-none rounded-br-none " />
+      <BackButton className="right-0 absolute  top-0 rounded-tl-none rounded-br-none " />
       <CardHeader>
         <CardTitle>{name}</CardTitle>
       </CardHeader>
-      <CardContent>{content}</CardContent>
-      <CardFooter className="flex justify-between ">
-        <Link href={`/home/edit/${id}`}>
-          <Button className="w-fit gap-2">
-            <Pencil />
-            Edit
-          </Button>
-        </Link>
-        {isPending ? (
-          <Button className="w-40 bg-red-100 ease-in-out duration-500 transition hover:scale-95">
-            <div className="loader"></div>
-            <Trash2 />
-            Delete
-          </Button>
-        ) : (
-          <Button
-            className="w-fit gap-2"
-            variant="destructive"
-            onClick={() => deletePostHandler()}
-          >
-            <Trash2 />
-            Delete
-          </Button>
-        )}
-      </CardFooter>
+      <CardContent className="pb-20">{content}</CardContent>
+      {isUser ? (
+        <CardFooter className="flex justify-between w-full absolute bottom-0">
+          <Link href={`/home/edit/${id}`}>
+            <Button
+              size="sm"
+              className="w-fit gap-2"
+            >
+              <Pencil />
+              Edit
+            </Button>
+          </Link>
+          {isPending ? (
+            <Button
+              size="sm"
+              className="w-40 bg-red-100 ease-in-out duration-500 transition hover:scale-95"
+            >
+              <div className="loader"></div>
+              <Trash2 />
+              Delete
+            </Button>
+          ) : (
+            <Button
+              size="sm"
+              className="w-fit gap-2"
+              variant="destructive"
+              onClick={() => deletePostHandler()}
+            >
+              <Trash2 />
+              Delete
+            </Button>
+          )}
+        </CardFooter>
+      ) : null}
     </Card>
   );
 };
