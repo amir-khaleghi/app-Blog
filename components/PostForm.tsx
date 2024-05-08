@@ -146,7 +146,10 @@ export function PostForm({
             />
           </>
           {isPending ? (
-            <Button className="w-full bg-slate-500 ease-in-out duration-500 transition hover:scale-95">
+            <Button
+              disabled={isPending}
+              className="w-full bg-slate-500 ease-in-out duration-500 transition hover:scale-95"
+            >
               <div className="loader"></div>
             </Button>
           ) : (

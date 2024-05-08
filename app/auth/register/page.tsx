@@ -5,13 +5,20 @@ import {
   RegisterLink,
   LoginLink,
 } from '@kinde-oss/kinde-auth-nextjs/components';
+import { revalidatePath } from 'next/cache';
+
+/* Handler -------------------------- */
+async function getUsers() {
+  const users = await db.user.findMany();
+
+  revalidatePath('/auth/register');
+  return users;
+}
 
 // ─── Comp ─────────────────────────────────────────── 🟩 ─
 
 const page = async () => {
-  const users = await db.user.findMany();
-  let numberOfUsers = users.length;
-
+  const users = await getUsers();
   // ─── Return ──────────────────────────────────────────────
 
   return (
@@ -30,7 +37,7 @@ const page = async () => {
         </div>
         <div className="w-full">
           <Card className="p-4 justify-around flex">
-            Current Users : {numberOfUsers}
+            Current Users : {users.length}
           </Card>
         </div>
       </div>

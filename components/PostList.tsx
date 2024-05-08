@@ -4,6 +4,12 @@ import { FC } from 'react';
 import { Button } from './ui/button';
 import Image from 'next/image';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
+import { db } from '@/lib/db';
+import { getPosts } from '@/lib/actions';
+
+// ─── Type ─────────────────────────────────────────── 🟩 ─
+
 interface Post {
   id: string;
   name: string;
@@ -12,17 +18,33 @@ interface Post {
 }
 
 interface PostListProps {
-  posts: { [key: string]: Post }; // Assuming posts is an object with string keys
+  page: string;
 }
+
+// ─── Lazy Loading ─────────────────────────────────── 🟩 ─
+
+const PaginationBar = dynamic(() => import('@/components/PaginationBar'), {
+  ssr: false,
+});
+
 // ─── Comp ─────────────────────────────────────────── 🟩 ─
 
-const PostList: FC<PostListProps> = ({ posts }) => {
+const PostList: FC<PostListProps> = async ({ page }) => {
+  /* Turn Search Param To Number ------ */
+  const currentPage = parseInt(page);
+
+  /* Pagination Data ---------------- */
+  const pageSize = 4;
+  const totalPosts = await db.post.count();
+  const totalPages = Math.ceil(totalPosts / pageSize);
+
+  const posts = await getPosts({ currentPage, pageSize });
   const postArray = Object.values(posts); // Convert object values to an array
 
   // ─── Return ──────────────────────────────────────────────
 
   return (
-    <div className="flex  flex-wrap md:mx-[50px] lg:mx-[170px]  xl:mx-[300px] items-start justify-center pt-4 gap-4 ">
+    <div className="flex flex-wrap md:mx-[50px] lg:mx-[170px] xl:mx-[300px] items-start justify-between pt-4 gap-4 ">
       {postArray.length > 0 ? (
         postArray?.map((post) => {
           const { id, name: title, content, tag } = post;
@@ -30,7 +52,7 @@ const PostList: FC<PostListProps> = ({ posts }) => {
             <CardComp
               key={id}
               id={id}
-              className="bg-orange-300 grow w-60 min-h-60 text-xs ease-in-out duration-300 rounded-md  shadow-md border-zinc-100 bg-gradient-to-t from-muted/50 to-muted hover:scale-105 hover:select-none justify-between flex flex-col "
+              className="bg-orange-300 h-full w-60 min-h-[300px] text-xs ease-in-out duration-300 rounded-md grow shadow-md border-zinc-100 bg-gradient-to-t from-muted/50 to-muted hover:scale-105 hover:select-none justify-between flex flex-col "
               title={title}
               tag={tag}
               buttonRText={'Read More'}
@@ -56,6 +78,16 @@ const PostList: FC<PostListProps> = ({ posts }) => {
           </Button>
         </div>
       )}
+
+      {/* pagination */}
+      <div className="item-center flex  justify-center w-full">
+        {totalPosts > pageSize && (
+          <PaginationBar
+            currentPage={currentPage}
+            totalPages={totalPages}
+          />
+        )}
+      </div>
     </div>
   );
 };

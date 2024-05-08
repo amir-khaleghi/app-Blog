@@ -1,27 +1,33 @@
 import { FC, Suspense } from 'react';
 import FeedPost from './FeedPost';
-
-interface Post {
-  id: string;
-  name: string;
-  content: string;
-  tag: { id: string; name: string };
-  userId: string;
-}
+import { getFeedPosts } from '@/lib/actions';
+import { db } from '@/lib/db';
+import PaginationBar from './PaginationBar';
+import LoadingPage from './LoadingPage';
 
 interface PostListProps {
-  posts: { [key: string]: Post }; // Assuming posts is an object with string keys
+  page: string;
 }
 
 // ─── Comp ─────────────────────────────────────────── 🟩 ─
 
-const Feed: FC<PostListProps> = async ({ posts }) => {
+const Feed: FC<PostListProps> = async ({ page }) => {
+  /* Turn Search Param To Number ------ */
+  const currentPage = parseInt(page);
+
+  /* Pagination Data ---------------- */
+  const pageSize = 6;
+  const totalPosts = await db.post.count();
+  const totalPages = Math.ceil(totalPosts / pageSize);
+
+  const posts = await getFeedPosts({ currentPage, pageSize });
+
   const postArray = Object.values(posts); // Convert object values to an array
 
   // ─── Return ──────────────────────────────────────────────
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<LoadingPage />}>
       <div className="flex  flex-wrap max-w-[700px] items-center justify-center pt-4 gap-4 ">
         {postArray.length > 0 ? (
           postArray?.map((post) => {
@@ -42,6 +48,15 @@ const Feed: FC<PostListProps> = async ({ posts }) => {
             This is Empty yet!!!
           </div>
         )}
+        {/* pagination */}
+        <div className="item-center flex  justify-center w-full">
+          {totalPosts > pageSize && (
+            <PaginationBar
+              currentPage={currentPage}
+              totalPages={totalPages}
+            />
+          )}
+        </div>
       </div>
     </Suspense>
   );

@@ -1,31 +1,15 @@
-import { db } from '@/lib/db';
-import { revalidatePath } from 'next/cache';
 import Footer from '@/components/Footer';
 import Feed from '@/components/Feed';
 
-async function getPosts() {
-  'use server';
-  const posts = await db.post.findMany({
-    select: {
-      id: true,
-      name: true,
-      content: true,
-      tag: true,
-      userId: true,
-    },
-    orderBy: {
-      createAt: 'desc',
-    },
-  });
-  revalidatePath('/');
-  return posts;
+interface HomeProps {
+  searchParams: { page: string };
 }
-
-export default async function Home({ params }: { params: { id: string } }) {
-  const posts = await getPosts();
+export default async function Home({
+  searchParams: { page = '1' },
+}: HomeProps) {
   return (
     <>
-      <Feed posts={posts} />
+      <Feed page={page} />
 
       <Footer />
     </>

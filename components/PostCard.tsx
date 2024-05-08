@@ -75,11 +75,9 @@ const PostCard: FC<PostCardProps> = ({ post, className, isUser }) => {
           {isPending ? (
             <Button
               size="sm"
-              className="w-40 bg-red-100 ease-in-out duration-500 transition hover:scale-95"
+              className="w-24 bg-red-100 ease-in-out duration-500 transition hover:scale-95"
             >
               <div className="loader"></div>
-              <Trash2 />
-              Delete
             </Button>
           ) : (
             <Button
