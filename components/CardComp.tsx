@@ -38,7 +38,9 @@ export function CardComp({
     <Card className={cn(className)}>
       <div>
         <CardHeader className="">
-          <CardTitle className="text-xl">{title}</CardTitle>
+          <CardTitle className="text-xl border-zinc-400 border-b pb-2">
+            {title}
+          </CardTitle>
           {/* <CardDescription>{description}</CardDescription> */}
         </CardHeader>
         <CardContent className="  tracking-wide">{children}</CardContent>

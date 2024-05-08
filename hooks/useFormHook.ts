@@ -26,7 +26,7 @@ const useFormHook = () => {
       .min(1, {
         message: `Title can't be empty`,
       })
-      .max(20, {
+      .max(60, {
         message: `Title can't be more than 20 characters`,
       }),
     content: z.string().min(1, {

@@ -24,9 +24,10 @@ async function getPosts() {
 export default async function Home({ params }: { params: { id: string } }) {
   const posts = await getPosts();
   return (
-    <div>
+    <>
       <Feed posts={posts} />
+
       <Footer />
-    </div>
+    </>
   );
 }

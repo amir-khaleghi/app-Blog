@@ -30,7 +30,7 @@ const PostList: FC<PostListProps> = ({ posts }) => {
             <CardComp
               key={id}
               id={id}
-              className="bg-orange-300 w-60 h-60 text-xs ease-in-out duration-300 rounded-md  shadow-md border-zinc-100 bg-gradient-to-t from-muted/50 to-muted hover:scale-105 hover:select-none justify-between flex flex-col "
+              className="bg-orange-300 grow w-60 min-h-60 text-xs ease-in-out duration-300 rounded-md  shadow-md border-zinc-100 bg-gradient-to-t from-muted/50 to-muted hover:scale-105 hover:select-none justify-between flex flex-col "
               title={title}
               tag={tag}
               buttonRText={'Read More'}

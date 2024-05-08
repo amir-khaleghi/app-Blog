@@ -37,7 +37,7 @@ export default function RootLayout({
         )}
       >
         <Provider>
-          <div className="">
+          <div>
             <Navbar />
           </div>
 
