@@ -11,31 +11,10 @@ interface PaginationBarProps {
 // ─── Comp ─────────────────────────────────────────── 🟩 ─
 
 const PaginationBar = ({ currentPage, totalPages }: PaginationBarProps) => {
-  /* Max Page ----------------------- */
-  const maxPage = Math.min(totalPages, Math.max(currentPage + 4, 10));
-
-  /* Min Page ----------------------- */
-  const minPage = Math.max(1, Math.min(currentPage - 5, maxPage - 9));
-
-  const numberedPageItems: JSX.Element[] = [];
-  for (let page = minPage; page <= maxPage; page++) {
-    numberedPageItems.push(
-      <Link
-        scroll={false}
-        key={page}
-        className={` ${currentPage === page ? 'bg-red-400' : ''}`}
-        href={'?page=' + page}
-      >
-        {page}
-      </Link>
-    );
-  }
-
   // ─────────────────────────────────────────────────────────
 
   return (
     <>
-      {/* <div className=" hidden sm:block ">{numberedPageItems}</div> */}
       <div className="  flex relative    items-center">
         {currentPage > 1 && (
           <Link

@@ -1,13 +1,20 @@
 import Image from 'next/image';
 import { NavigationComp } from './NavigationComp';
 import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
+import { revalidatePath } from 'next/cache';
+
+/* Handler -------------------------- */
+export async function getUserData() {
+  const { getUser } = getKindeServerSession();
+  const user = await getUser();
+  revalidatePath('/home');
+  return user;
+}
 
 // ─── Comp ─────────────────────────────────────────── 🟩 ─
 
 const Navbar = async () => {
-  const { getUser } = getKindeServerSession();
-  const user = await getUser();
-
+  const user = await getUserData();
   // ─── Return ──────────────────────────────────────────────
 
   return (

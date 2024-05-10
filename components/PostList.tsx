@@ -7,15 +7,9 @@ import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { db } from '@/lib/db';
 import { getPosts } from '@/lib/actions';
+import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
 
 // ─── Type ─────────────────────────────────────────── 🟩 ─
-
-interface Post {
-  id: string;
-  name: string;
-  content: string;
-  tag: { id: string; name: string };
-}
 
 interface PostListProps {
   page: string;
@@ -30,12 +24,20 @@ const PaginationBar = dynamic(() => import('@/components/PaginationBar'), {
 // ─── Comp ─────────────────────────────────────────── 🟩 ─
 
 const PostList: FC<PostListProps> = async ({ page }) => {
+  /* Get User ------------------------- */
+  const { getUser } = getKindeServerSession();
+  const user = await getUser();
+
   /* Turn Search Param To Number ------ */
   const currentPage = parseInt(page);
 
   /* Pagination Data ---------------- */
   const pageSize = 4;
-  const totalPosts = await db.post.count();
+  const totalPosts = await db.post.count({
+    where: {
+      userId: user?.id,
+    },
+  });
   const totalPages = Math.ceil(totalPosts / pageSize);
 
   const posts = await getPosts({ currentPage, pageSize });
