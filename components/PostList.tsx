@@ -46,7 +46,7 @@ const PostList: FC<PostListProps> = async ({ page }) => {
   // ─── Return ──────────────────────────────────────────────
 
   return (
-    <div className="flex flex-wrap md:mx-[50px] lg:mx-[170px] xl:mx-[300px] items-start justify-between pt-4 gap-4 ">
+    <div className="flex flex-wrap md:mx-[50px] lg:mx-[170px] xl:mx-[300px] items-start justify-between pt-4 gap-6 ">
       {postArray.length > 0 ? (
         postArray?.map((post) => {
           const { id, name: title, content, tag } = post;
