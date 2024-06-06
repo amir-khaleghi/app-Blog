@@ -40,7 +40,7 @@ export async function GET() {
       }
     }
 
-    return NextResponse.redirect('https://app-blog-beryl.vercel.app/home');
+    return NextResponse.redirect('https://blog-app-d.vercel.app/home');
   } catch (err) {
     console.error('Internal Server Error:', err);
     return NextResponse.json(
