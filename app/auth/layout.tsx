@@ -1,9 +1,7 @@
 import '@/styles/globals.css';
 import { ReactNode } from 'react';
-import { ThemeProvider } from '@/components/theme-provider';
 import Image from 'next/image';
 import vector1 from '@/public/vector1.svg';
-import Navbar from '@/components/Navbar';
 
 const AuthRootLayout = ({ children }: { children: ReactNode }) => {
   return (
@@ -23,14 +21,9 @@ const AuthRootLayout = ({ children }: { children: ReactNode }) => {
               alt="blog svg"
             />
           </div>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            {children}
-          </ThemeProvider>
+
+          {children}
+
           <div className="absolute bottom-0 -right-40  -z-20 ">
             <Image
               className="w-[1200px]"
