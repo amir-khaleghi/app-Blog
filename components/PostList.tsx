@@ -38,6 +38,7 @@ const PostList: FC<PostListProps> = async ({ page }) => {
       userId: user?.id,
     },
   });
+
   const totalPages = Math.ceil(totalPosts / pageSize);
 
   const posts = await getPosts({ currentPage, pageSize });

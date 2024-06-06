@@ -28,7 +28,7 @@ const Feed: FC<PostListProps> = async ({ page }) => {
 
   return (
     <Suspense fallback={<LoadingPage />}>
-      <div className="flex  flex-wrap max-w-[700px] items-center justify-center pt-4 gap-4 ">
+      <div className="flex  flex-wrap max-w-[700px] items-center justify-center pt-4 gap-4 mb-40">
         {postArray.length > 0 ? (
           postArray?.map((post) => {
             return (

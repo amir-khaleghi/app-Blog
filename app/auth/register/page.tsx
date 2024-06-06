@@ -6,6 +6,7 @@ import {
   LoginLink,
 } from '@kinde-oss/kinde-auth-nextjs/components';
 import { revalidatePath } from 'next/cache';
+import Image from 'next/image';
 
 /* Handler -------------------------- */
 async function getUsers() {
@@ -22,10 +23,17 @@ const page = async () => {
   // ─── Return ──────────────────────────────────────────────
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen gap-4">
-      <div className="flex flex-col items-center justify-center gap-4 ">
+    <div className="flex flex-col items-center justify-center h-screen gap-4 ">
+      <div className="flex flex-col items-center justify-center gap-4  border-1 shadow-2xl border-zinc-400 p-4 rounded-3xl">
+        <Image
+          className="text-xl text-center w-20 mb-5"
+          src="/icon.png"
+          alt="logo"
+          width={200}
+          height={200}
+        />
         <h1 className="text-xl text-center w-60">
-          Hello my gorgeous friend, I am so glad that you are here. 😃
+          Share your thoughts with everyone
         </h1>
         <div className="flex gap-4 w-full items-center justify-between">
           <Button size="lg">

@@ -10,7 +10,6 @@ export default async function Home({
   return (
     <>
       <Feed page={page} />
-
       <Footer />
     </>
   );

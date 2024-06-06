@@ -23,7 +23,7 @@ const NewPost = () => {
 
   const { mutate: createPost, isPending } = useMutation({
     mutationFn: (newPost: FormInputs) => {
-      return axios.post('/api/posts/create', newPost);
+      return axios.post('/api/posts/create/', newPost);
     },
     onError: (error) => {
       console.log('We have error in mutation', error);

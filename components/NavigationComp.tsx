@@ -60,7 +60,7 @@ export function NavigationComp({ user }) {
           {/*Feed */}
           <NavigationMenuItem>
             <Link
-              href={`/home/${user?.id}`}
+              href={`/home/feed`}
               legacyBehavior
               passHref
             >

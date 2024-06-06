@@ -25,8 +25,8 @@ import { Card, CardTitle } from './ui/card';
 import { Textarea } from './ui/textarea';
 import BackButton from './BackButton';
 import useFormHook from '@/hooks/useFormHook';
-import { FormInputs } from '@/app/create-post/page';
 import { useEffect } from 'react';
+import { FormInputs } from '@/app/home/(user)/create-post/page';
 
 // ─── Type ─────────────────────────────────────────── 🟩 ─
 

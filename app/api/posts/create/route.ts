@@ -8,7 +8,8 @@ export async function POST(req: Request) {
 
   try {
     const body = await req.json();
-    const userId = user?.id; // Implement this function to extract user ID from the request
+
+    const userId = user?.id; // Ensure this is implemented to correctly extract user ID
 
     if (!userId) {
       return NextResponse.json(
@@ -28,6 +29,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json(post, { status: 200 });
   } catch (error) {
+    console.error('Error creating post:', error);
     return NextResponse.json(
       { message: 'Could not create post' },
       { status: 500 }
